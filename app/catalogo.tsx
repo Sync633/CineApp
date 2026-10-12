@@ -4,13 +4,13 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Botao from '../components/Botao';
 import FilmeCard from '../components/FilmeCard';
 
-const filmes = [
-  { id: 1, titulo: "Mad Max: Estrada da Fúria", genero: "Ação", ano: 2015, imagem: require('../assets/images/madmax.png') },
-  { id: 2, titulo: "Batman: O Cavaleiro das Trevas", genero: "Ação", ano: 2008, imagem: require('../assets/images/batman.png') },
-  { id: 3, titulo: "Top Gun: Maverick", genero: "Ação", ano: 2022, imagem: require('../assets/images/topgun.png') },
-  { id: 4, titulo: "1917", genero: "Guerra", ano: 2019, imagem: require('../assets/images/1917.png') },
-  { id: 5, titulo: "Django Livre", genero: "Faroeste", ano: 2012, imagem: require('../assets/images/django.png') },
-  { id: 6, titulo: "Ford vs Ferrari", genero: "Drama", ano: 2019, imagem: require('../assets/images/fordferrari.png') },
+export const filmes = [
+  { id: 1, titulo: "Mad Max: Estrada da Fúria", genero: "Ação", ano: 2015, duracao: "2h 00min", imagem: require('../assets/images/madmax.png'), sinopse: "Num deserto pós-apocalíptico, Max se vê arrastado para a fuga de Furiosa, que tenta libertar um grupo de mulheres do tirano Immortan Joe. Começa uma perseguição implacável pela estrada." },
+  { id: 2, titulo: "Batman: O Cavaleiro das Trevas", genero: "Ação", ano: 2008, duracao: "2h 32min", imagem: require('../assets/images/batman.png'), sinopse: "Com a ajuda de Jim Gordon e Harvey Dent, Batman vinha mantendo a ordem em Gotham. A chegada do Coringa, um criminoso sem limites, leva a cidade ao caos e testa tudo o que ele defende." },
+  { id: 3, titulo: "Top Gun: Maverick", genero: "Ação", ano: 2022, duracao: "2h 10min", imagem: require('../assets/images/topgun.png'), sinopse: "Mais de trinta anos depois, Maverick continua como piloto de testes e é chamado para treinar jovens pilotos para uma missão perigosa. Entre eles está o filho de seu antigo parceiro." },
+  { id: 4, titulo: "1917", genero: "Guerra", ano: 2019, duracao: "1h 59min", imagem: require('../assets/images/1917.png'), sinopse: "Em plena Primeira Guerra Mundial, dois jovens soldados britânicos recebem uma missão quase impossível: cruzar território inimigo para entregar uma mensagem que pode salvar centenas de vidas." },
+  { id: 5, titulo: "Django Livre", genero: "Faroeste", ano: 2012, duracao: "2h 45min", imagem: require('../assets/images/django.png'), sinopse: "No sul dos Estados Unidos, o escravizado Django é libertado pelo caçador de recompensas King Schultz. Juntos, eles seguem em busca de criminosos e de uma chance de resgatar a esposa dele." },
+  { id: 6, titulo: "Ford vs Ferrari", genero: "Drama", ano: 2019, duracao: "2h 32min", imagem: require('../assets/images/fordferrari.png'), sinopse: "O projetista Carroll Shelby e o piloto Ken Miles enfrentam a pressão da diretoria da Ford para construir um carro capaz de vencer a Ferrari nas 24 Horas de Le Mans." },
 ];
 
 export default function Catalogo() {
@@ -32,7 +32,7 @@ export default function Catalogo() {
 
       <View style={styles.header}>
         <View>
-          <Text style={styles.emCartaz}>EM CARTAZ</Text>
+          <Text style={styles.emCartaez}>EM CARTAZ</Text>
           <Text style={styles.tituloCatalogo}>Explore Filmes</Text>
           <Text style={styles.textCatalogo}>Filmes sugeridos para a sua próxima sessão.</Text>
 
@@ -57,7 +57,7 @@ export default function Catalogo() {
                 genero={filme.genero}
                 ano={filme.ano}
                 imagem={filme.imagem}
-                onPress={() => router.push('/detalhes')}
+                onPress={() => router.push({ pathname: '/detalhes', params: { id: filme.id } })}
               />
             ))}
           </View>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
-  emCartaz: {
+  emCartaez: {
     fontSize: 12,
     fontWeight: 'bold',
     color: '#9d79ff',
