@@ -4,65 +4,91 @@ import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
 interface FilmeCardProps {
   titulo: string;
   genero: string;
-  ano: string;
-  imagem: any; // Pode ser um require ou uma URL
+  ano: number;
+  imagem: any;
   onPress: () => void;
 }
 
 export default function FilmeCard({ titulo, genero, ano, imagem, onPress }: FilmeCardProps) {
   const [favorito, setFavorito] = useState(false);
 
-  return (
-    <Pressable onPress={onPress} style={styles.card}>
-      <Image source={imagem} style={styles.imagem} />
-      
-      <View style={styles.infoContainer}>
-        <Text style={styles.titulo}>{titulo}</Text>
-        <Text style={styles.detalhes}>{genero} • {ano}</Text>
-      </View>
 
-      <Pressable 
-        onPress={() => setFavorito(!favorito)} 
-        style={styles.botaoFavorito}
-      >
-        <Text style={styles.estrela}>{favorito ? '★' : '☆'}</Text>
+  return (
+    <View style={styles.card}>
+      <Pressable onPress={onPress} style={styles.cardConteudo}>
+        <Image source={imagem} style={styles.imagem} />
+
+        <View style={styles.infoContainer}>
+          <Text style={styles.titulo}>{titulo}</Text>
+          <Text style={styles.detalhes}>{genero} • {ano}</Text>
+        </View>
       </Pressable>
-    </Pressable>
+
+      <Pressable
+        onPress={() => setFavorito(!favorito)}
+        style={styles.botaoFavorito}
+        hitSlop={8}
+      >
+        <Image
+          source={
+            favorito
+              ? require('../assets/images/estrela-full.png')
+              : require('../assets/images/estrela-vazia.png')
+          }
+          style={styles.estrela}
+          resizeMode="contain"
+        />
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    flexDirection: 'row',
-    backgroundColor: '#1e1e1e',
+    width: '48%',
     marginVertical: 10,
-    borderRadius: 10,
-    overflow: 'hidden',
-    alignItems: 'center',
+    position: 'relative',
   },
-  imagem: {
-    width: 80,
-    height: 120,
+  cardConteudo: {
+    flex: 1,
   },
   infoContainer: {
-    flex: 1,
-    padding: 10,
+    paddingTop: 12,
+    gap: 2,
   },
   titulo: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
   },
   detalhes: {
     color: '#aaa',
-    fontSize: 14,
+    fontSize: 11,
     marginTop: 5,
   },
+  imagem: {
+    borderColor: '#424242',
+    borderWidth: 1,
+    borderRadius: 10,
+    width: '100%',
+    height: 240,
+  },
   botaoFavorito: {
-    padding: 15,
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    zIndex: 1,
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.50)',
+    borderColor: '#424242',
+    borderWidth: 1,
+    borderRadius: 10,
   },
   estrela: {
-    fontSize: 24,
-    color: '#8b5cf6',
+    width: 15,
+    height: 15
   }
 });
