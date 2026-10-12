@@ -1,8 +1,8 @@
 # CineApp — Catálogo de Filmes
 
-**Aluno:** Miguel Santos Pereira
-**RA:** 2991392513004
-**Disciplina:** Programação para Dispositivos Móveis I — Fatec Registro
+- **Aluno:** Miguel Santos Pereira
+- **RA:** 2991392513004
+- **Disciplina:** Programação para Dispositivos Móveis I — Fatec Registro
 
 ## Descrição
 
